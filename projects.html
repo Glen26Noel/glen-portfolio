@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glen Noel – Projects</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .banner {
+      position: relative;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      filter: brightness(0.6);
+    }
+
+    .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1.5rem 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .banner-text h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .banner-text blockquote {
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .navbar {
+      background: linear-gradient(to right, #0057b8, #0074d9);
+      text-align: center;
+      padding: 0.6rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    .navbar a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background-color: #003366;
+    }
+
+    .intro {
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .project-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
+
+    .project-header h2 {
+      margin: 0;
+      color: #0057b8;
+    }
+
+    .back-to-top {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #0074d9;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .project-thumbnail {
+      background-color: #e3eaf5;
+      border: 2px dashed #0074d9;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      color: #003366;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .project-thumbnail:hover {
+      transform: scale(1.03);
+      background-color: #d0e3fa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+   <!-- Banner -->
+  <section class="banner">
+    <img src="images/banner.jpeg" alt="Projects banner">
+    <div class="banner-text">
+      <h1>Projects</h1>
+      <blockquote>
+        “We always overestimate the change that will occur in the next two years and underestimate the change that will occur in the next ten.”  
+        <footer style="color: white;">— Bill Gates</footer>
+      </blockquote>
+    </div>
+  </section>  
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="work.html">Work Experience</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+ 
+
+  <!-- Intro -->
+    <div class="intro">
+      <p><strong>🔥 Welcome to the heart of my innovation journey!</strong><br>
+        This website isn’t just a portfolio — it’s a living, breathing project that captures who I am, what I’ve built, and where I’m headed. From data to design, every click is a step into my passion for tech, education, and the future of digital possibility.<br><br>
+        Explore the project categories below — the best is yet to come, and this is just the beginning. 🚀</p>
+    </div>
+
+  <!-- Project Section 1: Data Analytics -->
+  <section class="project-section" id="data-analytics">
+    <div class="project-header">
+      <h2>📊 Data Analytics</h2>
+      <a href="#top" class="back-to-top">Back to Top ↑</a>
+    </div>
+    <div class="project-grid">
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+    </div>
+  </section>
+
+  <!-- Project Section 2: AI Prompt Engineering -->
+  <section class="project-section" id="ai-projects">
+    <div class="project-header">
+      <h2>🤖 AI Prompt Engineering</h2>
+      <a href="#top" class="back-to-top">Back to Top ↑</a>
+    </div>
+    <div class="project-grid">
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+    </div>
+  </section>
+
+  <!-- Project Section 3: Academic Projects -->
+  <section class="project-section" id="academic-projects">
+    <div class="project-header">
+      <h2>🎓 Academic Projects</h2>
+      <a href="#top" class="back-to-top">Back to Top ↑</a>
+    </div>
+    <div class="project-grid">
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+      <div class="project-thumbnail">Project Placeholder</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="color: white;">
+    © 2025 Glen Noel Bsc. All rights reserved.
+  </footer>
+
+</body>
+</html>
