@@ -1,0 +1,22 @@
+import {accessRequestEndpoint} from './access-request-config.js';
+export function createAccessRequestForm(){
+ const form=document.createElement('form');form.id='access-request-form';form.method='post';
+ form.innerHTML=`<div class="request-fields"><label>First name<input name="first_name" autocomplete="given-name" maxlength="100" required></label><label>Last name<input name="last_name" autocomplete="family-name" maxlength="100" required></label><label class="wide">Email address<input name="email" type="email" autocomplete="email" maxlength="254" required></label><label class="wide">Position Glen applied for<input name="applied_position" maxlength="200" required placeholder="Enter the job title"></label></div><div hidden aria-hidden="true"><label>Leave empty<input name="_gotcha" tabindex="-1" autocomplete="off"></label></div><button type="submit">Request access</button><p class="request-privacy">Your details will be used to review and respond to your access request. Glen will reply to the email address you provide.</p><p class="request-status" role="status" aria-live="polite"></p>`;
+ if(!document.getElementById('access-request-style')){const style=document.createElement('style');style.id='access-request-style';style.textContent=`#access-request-form{margin-top:26px}#access-request-form .request-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}#access-request-form label{display:grid;gap:6px;font-size:14px;font-weight:700;min-width:0}#access-request-form .wide{grid-column:1/-1}#access-request-form input{box-sizing:border-box;width:100%;min-width:0;min-height:48px;border:1px solid #9abedb;border-radius:9px;padding:12px;font:inherit;color:#092a48;background:#fff}#access-request-form button{min-height:48px;padding:13px 24px;border:0;border-radius:9px;background:linear-gradient(110deg,#0055d9,#007cad);color:white;font:700 16px Arial;cursor:pointer;margin-top:20px}#access-request-form button:hover{filter:brightness(1.1)}#access-request-form button:disabled{opacity:.65;cursor:not-allowed}#access-request-form :focus-visible{outline:3px solid #0064b5;outline-offset:3px}#access-request-form .request-privacy{font-size:13px;line-height:1.5;color:#425e78}#access-request-form .request-status{font-weight:700;font-size:14px}@media(max-width:520px){#access-request-form .request-fields{grid-template-columns:1fr}#access-request-form button{width:100%}}`;document.head.append(style);}
+ const button=form.querySelector('button'),status=form.querySelector('.request-status');
+ const configured=/^https:\/\/formspree\.io\/f\/[a-zA-Z0-9]+$/.test(accessRequestEndpoint);
+ if(!configured){button.disabled=true;status.textContent='The access request form is being connected. Please use the Contact page for now.';}
+ let sending=false;
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();if(sending||!configured)return;
+  for(const name of ['first_name','last_name','email','applied_position'])form.elements[name].value=form.elements[name].value.trim();
+  if(!form.reportValidity())return;
+  if(form.elements._gotcha.value){status.textContent='Unable to send this request. Please contact Glen directly.';return;}
+  sending=true;button.disabled=true;button.textContent='Sending…';form.setAttribute('aria-busy','true');status.textContent='Sending your request…';
+  const data=new FormData(form);data.set('subject','Portfolio access request — '+data.get('applied_position'));data.set('message',`Portfolio access requested\n\nFirst name: ${data.get('first_name')}\nLast name: ${data.get('last_name')}\nEmail: ${data.get('email')}\nPosition Glen applied for: ${data.get('applied_position')}\n\nReply to this email to respond to the visitor.`);
+  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
+  try{const response=await fetch(accessRequestEndpoint,{method:'POST',body:data,headers:{Accept:'application/json'},signal:controller.signal});const result=await response.json();if(!response.ok||result.ok!==true)throw Error('Not confirmed');status.textContent='Thank you. Your request has been submitted. Glen will review it and reply to your email address.';form.reset();}
+  catch{status.textContent='We could not confirm that your request was sent. Your details are still here. Please try again or use the Contact page.';}
+  finally{clearTimeout(timeout);sending=false;button.disabled=false;button.textContent='Request access';form.removeAttribute('aria-busy');}
+ });return form;
+}
